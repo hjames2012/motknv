@@ -1,0 +1,95 @@
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    width: 250px;
+    height: auto;
+    padding: 15px 0;
+    background-color: #1a1a1a;
+    border-radius: 10px 0 0 10px;
+    cursor: move;
+    user-select: none;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+
+  .sidebar-button {
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 10px;
+    width: calc(100% - 20px);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .sidebar-button:hover {
+    background-color: #3a3a3a;
+  }
+
+  h2 {
+    position: relative;
+  z-index: 2;
+  margin: 0;
+  color: white;
+  text-shadow: 0 0 10px #00ff88,
+               0 0 20px #00b7ff,
+               0 0 30px darkblue,
+               0 0 40px blue;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+      text-shadow: 0 0 20px #0077ff,
+                   0 0 30px #0066aa,
+                   0 0 40px #0036ac,
+                   0 0 50px #001dc2;
+  }
+  to {
+      text-shadow: 0 0 20px #0077ff,
+                   0 0 30px #0099ff,
+                   0 0 40px #0051ff,
+                   0 0 50px #0026ff;
+  }
+}
+
+.sidebar-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+/* Add background images for each button */
+.sidebar-button-class {
+  background-image: url('/image/classroom.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 89.5px;
+  height: 89.5px;
+}
+
+.sidebar-button-drive {
+  background-image: url('/image/drive.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 123px;
+  height: 65.5px;
+}
+
+.sidebar-button-newtab {
+  background-image: url('/image/newtab.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 112.5px;
+  height: 112.5px;
+}

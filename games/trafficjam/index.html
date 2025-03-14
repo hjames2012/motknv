@@ -1,0 +1,141 @@
+<html lang="en-us">
+<head>
+  <script src="/storage/js/preloader.js"></script>
+  <link rel="stylesheet" href="/storage/css/preloader.css">
+  <link rel="stylesheet" href="/storage/css/preloaderimg.css">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Classroom</title>
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    // Disable text selection
+    document.addEventListener('selectstart', (event) => {
+      event.preventDefault();
+    });
+
+    // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'u') {
+        event.preventDefault();
+      }
+      if (event.key === 'F12') {
+        event.preventDefault();
+      }
+      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+      }
+      if (event.key === 'F11') {
+        event.preventDefault();
+      }
+      if (event.key === ' ') {
+        spacebarPresses++;
+        if (spacebarPresses === 3) {
+          window.close(); // Close the tab
+          spacebarPresses = 0;
+        }
+      } else {
+        spacebarPresses = 0; // Reset counter if not spacebar
+      }
+    });
+  </script>
+    <link rel="shortcut icon" href="TemplateData/img/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css?v=1">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="https://api.allorigins.win/raw?url=https://gist.githubusercontent.com/vladimir-kotikov/bdd36048ae69e396178e4cb7cd201bcb/raw/0cc74c1550aa887aa59279936457df20a8856869/UnityLoader.js"></script>
+    <link rel="stylesheet" href="/storage/css/sidebar.css">
+    <script>
+                window.onload = function() {
+            var gameInstance = UnityLoader.instantiate("gameContainer", "Build/TrafficJam3D-build-4.json", {
+                onProgress: UnityProgress,
+                Module: {
+                    onRuntimeInitialized: function() {
+                        UnityProgress(gameInstance, "complete");
+                    }
+                }
+            });
+        };
+
+        function UnityProgress(gameInstance, progress) {
+            // Function to handle loading progress
+            console.log("Loading progress: " + progress);
+        }
+    </script>
+    <link rel="canonical" href="https://trafficjam3d.github.io/" />
+    <script>
+        // Disable right-click context menu
+      document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      });
+      
+      // Disable text selection
+      document.addEventListener('selectstart', (event) => {
+      event.preventDefault();
+      });
+      
+      // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
+      document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'u') {
+      event.preventDefault();
+      }
+      if (event.key === 'F12') {
+      event.preventDefault();
+      }
+      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+      event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'I') {
+      event.preventDefault();
+      }
+      if (event.key === 'Escape') {
+      event.preventDefault();
+      }
+      if (event.key === 'F11') {
+      event.preventDefault();
+      }
+      if (event.key === ' ') {
+      spacebarPresses++;
+      if (spacebarPresses === 3) {
+      window.close(); // Close the tab
+      spacebarPresses = 0;
+      }
+      } else {
+      spacebarPresses = 0; // Reset counter if not spacebar
+      }
+      });
+      </script>
+</head>
+<body>
+
+    <div class="webgl-content">
+        <div id="gameContainer" style="width: 900px; height: 600px; margin: auto"></div>
+    </div>
+  <div class="sidebar" id="draggableSidebar">
+    <h2>Quicklinks</h2>
+    <a href="https://classroom.google.com/">
+      <button class="sidebar-button-class">
+        <p>Google Classroom</p>
+      </button>
+    </a>
+    <a href="https://drive.google.com/">
+      <button class="sidebar-button-drive">
+        <p>Drive</p>
+      </button>
+  </a>
+    <a href="chrome://new-tab-page">
+      <button class="sidebar-button-newtab">
+        <p>New tab</p>
+      </button>
+    </a>
+  </div>
+</body>
+</html>

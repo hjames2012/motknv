@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Epic Music Player</title>
+    <style>
+        :root {
+            --primary-color: #ff00ff;
+            --secondary-color: #00ffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #equalizer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 10;
+        }
+
+        .search-container {
+            margin-top: 220px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #search-input {
+            padding: 10px 20px;
+            width: 300px;
+            border-radius: 25px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        #search-button {
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            box-shadow: 0 0 10px var(--secondary-color);
+        }
+
+        .results {
+            padding: 20px;
+            margin-bottom: 100px;
+        }
+
+        .song-card {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .song-card:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .song-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .player-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .progress-time {
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .control-button {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .control-button:hover {
+            background: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        #now-playing {
+            text-align: center;
+            margin-top: 10px;
+            color: white;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="equalizer"></canvas>
+    
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for music...">
+        <button id="search-button">Search</button>
+    </div>
+
+    <div class="results" id="results"></div>
+
+    <div id="player" style="display: none;"></div>
+
+    <div class="player-container">
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+            <div class="progress-time">0:00 / 0:00</div>
+        </div>
+        <div class="controls">
+            <button id="prev-button" class="control-button">⏮</button>
+            <button id="play-pause-button" class="control-button">▶</button>
+            <button id="next-button" class="control-button">⏭</button>
+        </div>
+        <div id="now-playing"></div>
+    </div>
+
+    <script>
+        // YouTube Configuration
+        const YT_API_KEY = 'AIzaSyAqiWUCX9yYg1DtGJbsgqNK_ms7sbBianE';
+        let player;
+        let tracks = [];
+        let currentTrack = null;
+        let audioContext;
+        let analyser;
+
+        // Initialize Audio Context and Equalizer
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 256;
+            createEqualizer();
+        }
+
+        // Create Equalizer
+        function createEqualizer() {
+            const canvas = document.getElementById('equalizer');
+            const ctx = canvas.getContext('2d');
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                analyser.getByteFrequencyData(dataArray);
+                
+                const barWidth = (canvas.width / bufferLength) * 2.5;
+                let barHeight;
+                let x = 0;
+                
+                for(let i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i] * 1.5;
+                    
+                    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradient.addColorStop(0, '#ff00ff');
+                    gradient.addColorStop(0.5, '#00ffff');
+                    gradient.addColorStop(1, '#ff00ff');
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                    
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#ff00ff';
+                    
+                    x += barWidth + 1;
+                }
+            }
+            
+            animate();
+        }
+
+        // Load YouTube IFrame API
+        function loadYouTubeAPI() {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        // Initialize YouTube Player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 0
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange,
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady() {
+            initAudio();
+            updateProgressBar();
+        }
+
+        // Format time for progress bar
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Search tracks
+        async function searchTracks() {
+            const query = document.getElementById('search-input').value;
+            
+            try {
+                const response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${encodeURIComponent(query)}%20music&type=video&key=${YT_API_KEY}`);
+                
+                if (!response.ok) throw new Error('Search failed');
+                
+                const data = await response.json();
+                tracks = data.items;
+                displayResults(tracks);
+            } catch (error) {
+                console.error('Search error:', error);
+            }
+        }
+
+        // Display results
+        function displayResults(tracks) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            tracks.forEach(track => {
+                const card = document.createElement('div');
+                card.className = 'song-card';
+                card.innerHTML = `
+                    <img src="${track.snippet.thumbnails.medium.url}" alt="${track.snippet.title}">
+                    <div class="track-info">
+                        <h3>${track.snippet.title}</h3>
+                        <p>${track.snippet.channelTitle}</p>
+                    </div>
+                `;
+                card.onclick = () => playTrack(track);
+                resultsDiv.appendChild(card);
+            });
+        }
+
+        // Player Controls
+        function playTrack(track) {
+            currentTrack = track;
+            player.loadVideoById(track.id.videoId);
+            document.getElementById('now-playing').textContent = 
+                `Now Playing: ${track.snippet.title}`;
+            updatePlayerState();
+        }
+
+        function togglePlayPause() {
+            if (player.getPlayerState() === 1) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        }
+
+        function nextTrack() {
+            const currentIndex = tracks.findIndex(track => track.id.videoId === currentTrack?.id.videoId);
+            if (currentIndex !== -1 && currentIndex < tracks.length - 1) {
+                playTrack(tracks[currentIndex + 1]);
+            }
+        }
+
+        function previousTrack() {
+            const currentIndex = tracks.findIndex(track => track.id.videoId === currentTrack?.id.videoId);
+            if (currentIndex > 0) {
+                playTrack(tracks[currentIndex - 1]);
+            }
+        }
+
+        function updatePlayerState() {
+            const playPauseButton = document.getElementById('play-pause-button');
+            playPauseButton.textContent = player.getPlayerState() === 1 ? '⏸' : '▶';
+        }
+
+        function onPlayerStateChange(event) {
+            updatePlayerState();
+            if (event.data === YT.PlayerState.ENDED) {
+                nextTrack();
+            }
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            if (player && player.getCurrentTime) {
+                const currentTime = player.getCurrentTime();
+                const duration = player.getDuration();
+                const progress = (currentTime / duration) * 100;
+                
+                document.querySelector('.progress-bar').style.width = `${progress}%`;
+                document.querySelector('.progress-time').textContent = 
+                    `${formatTime(currentTime)} / ${formatTime(duration)}`;
+            }
+            requestAnimationFrame(updateProgressBar);
+        }
+
+        // Event Listeners
+        document.getElementById('search-button').addEventListener('click', searchTracks);
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchTracks();
+        });
+        document.getElementById('play-pause-button').addEventListener('click', togglePlayPause);
+        document.getElementById('next-button').addEventListener('click', nextTrack);
+        document.getElementById('prev-button').addEventListener('click', previousTrack);
+
+        document.querySelector('.progress-container').addEventListener('click', (e) => {
+            const progressContainer = e.currentTarget;
+            const clickPosition = e.offsetX / progressContainer.offsetWidth;
+            const seekTime = player.getDuration() * clickPosition;
+            player.seekTo(seekTime);
+        });
+
+        // Initialize
+        loadYouTubeAPI();
+    </script>
+</body>
+</html>

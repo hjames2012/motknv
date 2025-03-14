@@ -1,0 +1,291 @@
+<html lang="en">
+
+<head>
+  <script src="/storage/js/preloader.js"></script>
+  <link rel="stylesheet" href="/storage/css/preloader.css">
+  <link rel="stylesheet" href="/storage/css/preloaderimg.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-7FN7LEVWXD');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/storage/images/ico.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/storage/css/index.css">
+  <link rel="stylesheet" href="/storage/css/sidebar.css">
+  <title>Classroom</title>
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    // Disable text selection
+    document.addEventListener('selectstart', (event) => {
+      event.preventDefault();
+    });
+
+    // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'u') {
+        event.preventDefault();
+      }
+      if (event.key === 'F12') {
+        event.preventDefault();
+      }
+      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+      }
+      if (event.key === 'F11') {
+        event.preventDefault();
+      }
+      if (event.key === ' ') {
+        spacebarPresses++;
+        if (spacebarPresses === 3) {
+          window.close(); // Close the tab
+          spacebarPresses = 0;
+        }
+      } else {
+        spacebarPresses = 0; // Reset counter if not spacebar
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+  <div id="blackout"></div>
+  <div id="updPopup">
+    <br><br>
+    <h2 style="font-size: 28px; text-decoration: underline;">version 10 / patch notes</h2>
+
+    <div id="updContent">
+      <ul style="text-align: left;">
+        <li>offline mode
+          <ul>
+            <li>download 200+ games from the site by clicking the download button to the left of them</li>
+            <li>after one game is downloaded, loading the site without an internet connection will send you to an
+              offline version on the site where you can access downloaded games</li>
+            <li>supports ruffle/flash + works seamlessly with compatible games</li>
+          </ul>
+        </li>
+    </div>
+    <div id="updConfirmFrame"><button id="updConfirm">okay</button></div>
+  </div>
+
+
+  <div class="content-side">
+    <h1 class="typewriter"><span id="cursor"></span></h1>
+    <h2>version 10 / release build</h2>
+    <br>
+
+    <div class="button-container">
+      <div class="gamesbutton" onclick="window.location='games/index.html';">
+        <img src="image/controller.png">
+        <div class="button-text">
+          <p>games</p>
+        </div>
+      </div>
+
+      <div class="gamesbutton" onclick="window.location='apps/index.html';">
+        <img src="image/apps.png"></a>
+        <div class="button-text">
+          <p>apps</p>
+        </div>
+      </div>
+
+      <div class="gamesbutton" onclick="window.location='settings.html';">
+        <img src="image/settings.png"></a>
+        <div class="button-text">
+          <p>settings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar" id="draggableSidebar">
+    <h2>Quicklinks</h2>
+    <a href="https://classroom.google.com/">
+      <button class="sidebar-button-class">
+        <p>Google Classroom</p>
+      </button>
+    </a>
+    <a href="https://drive.google.com/">
+      <button class="sidebar-button-drive">
+        <p>Drive</p>
+      </button>
+  </a>
+    <a href="chrome://new-tab-page">
+      <button class="sidebar-button-newtab">
+        <p>New tab</p>
+      </button>
+    </a>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/offline-worker.js').then(function (registration) {
+          console.log('service worker initalised! scope:', registration.scope);
+
+          navigator.serviceWorker.addEventListener('message', function (event) {
+            if (event.data === 'cached') {
+              document.getElementById('cache-status').style.display = 'block';
+            }
+          });
+        }, function (error) {
+          console.log('ack, error with serviceworker! ', error);
+        });
+      });
+    }
+
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!localStorage.getItem('v10-update')) {
+        document.getElementById('blackout').style.display = 'block';
+        document.getElementById('updPopup').style.display = 'block';
+        localStorage.setItem('v10-update', 'true');
+      }
+      document.getElementById('updConfirm').addEventListener('click', function () {
+        document.getElementById('blackout').style.display = 'none';
+        document.getElementById('updPopup').style.display = 'none';
+      });
+    });
+  </script>
+  <script>
+    const text = "MotKNV";
+    const typingDelay = 500;
+    const initialDelay = 100;
+    const cursor = document.getElementById("cursor");
+    const h1 = document.querySelector(".typewriter");
+
+    function type() {
+      setTimeout(() => {
+        for (let i = 0; i < text.length; i++) {
+          setTimeout(() => {
+            h1.textContent += text[i];
+            if (i === text.length - 1) {
+              cursor.style.display = "none";
+            }
+          }, i * typingDelay);
+        }
+      }, initialDelay);
+    }
+
+    type();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('draggableSidebar');
+      let isDragging = false;
+      let currentY;
+      let initialY;
+      let yOffset = 0;
+
+      sidebar.addEventListener('mousedown', dragStart);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', dragEnd);
+
+      function dragStart(e) {
+        initialY = e.clientY - yOffset;
+        isDragging = true;
+      }
+
+      function drag(e) {
+        if (isDragging) {
+          e.preventDefault();
+          currentY = e.clientY - initialY;
+          yOffset = currentY;
+          setTranslate(currentY);
+        }
+      }
+
+      function dragEnd() {
+        isDragging = false;
+      }
+
+      function setTranslate(yPos) {
+        sidebar.style.transform = `translateY(${yPos}px)`;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var openBlankLink = document.getElementById('openBlankLink');
+
+      openBlankLink.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var newTab = window.open('about:blank', '_blank');
+
+        if (newTab) {
+          var newTabBody = newTab.document.body;
+          newTabBody.style.padding = '0';
+          newTabBody.style.margin = '0';
+          newTabBody.style.border = 'hidden';
+
+          var iframe = document.createElement('iframe');
+          iframe.src = window.location.href;
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = 'hidden';
+
+          iframe.onload = function () {
+            var links = iframe.contentDocument.querySelectorAll('a[target="_blank"]');
+            links.forEach(function (link) {
+              link.addEventListener('click', function (event) {
+                event.preventDefault();
+                iframe.contentWindow.location.href = link.href;
+              });
+            });
+          };
+
+          newTab.document.body.appendChild(iframe);
+        } else {
+          alert("couldn't manage to open a new tab :(");
+        }
+      });
+    });
+  </script>
+
+  <script src="storage/js/cloak.js"></script>
+  <script src="storage/js/theme.js"></script>
+  <script src="storage/js/cookie.js"></script>
+  <div class="sidebar" id="draggableSidebar">
+    <h2>Quicklinks</h2>
+    <a href="https://classroom.google.com/">
+      <button class="sidebar-button-class">
+        <p>Google Classroom</p>
+      </button>
+    </a>
+    <a href="https://drive.google.com/">
+      <button class="sidebar-button-drive">
+        <p>Drive</p>
+      </button>
+  </a>
+    <a href="chrome://new-tab-page">
+      <button class="sidebar-button-newtab">
+        <p>New tab</p>
+      </button>
+    </a>
+  </div>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-8eef64c7-e0fc-4d4e-8553-cacaec8ac550" data-elfsight-app-lazy></div>
+</body>
+
+</html>

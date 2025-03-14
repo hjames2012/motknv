@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+        .success-message {
+            display: none;
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return submitForm(event)">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <div class="error" id="error-message"></div>
+        <div class="success-message" id="success-message">Hello</div>
+
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+<script>
+    const storedHashedPassword = 'fac718864d37e066c1e6eecb3a55265c67ec123c3e0c3063cd44173bf3407b9c'; // Replace with the actual hash
+
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function submitForm(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const password = document.getElementById('password').value.trim();
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+
+        // Clear previous messages
+        errorMessage.textContent = '';
+        successMessage.style.display = 'none';
+
+        // Basic validation
+        if (password === '') {
+            errorMessage.textContent = 'Password is required.';
+            return;
+        }
+
+        // Hash the entered password and compare
+        const hashedPassword = await hashPassword(password);
+        
+        if (hashedPassword === storedHashedPassword) {
+            // Show success message
+            successMessage.style.display = 'block';
+
+            // Redirect after 10 seconds
+            setTimeout(() => {
+                location.reload(); // Reload the page
+            }, 10000);
+        } else {
+            errorMessage.textContent = 'Invalid password.';
+        }
+    }
+</script>
+
+</body>
+</html>

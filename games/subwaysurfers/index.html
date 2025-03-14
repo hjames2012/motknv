@@ -1,0 +1,107 @@
+<html>
+  <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-7FN7LEVWXD');
+        </script>
+
+        <title>Classroom</title>
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    // Disable text selection
+    document.addEventListener('selectstart', (event) => {
+      event.preventDefault();
+    });
+
+    // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'u') {
+        event.preventDefault();
+      }
+      if (event.key === 'F12') {
+        event.preventDefault();
+      }
+      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+      }
+      if (event.key === 'F11') {
+        event.preventDefault();
+      }
+      if (event.key === ' ') {
+        spacebarPresses++;
+        if (spacebarPresses === 3) {
+          window.close(); // Close the tab
+          spacebarPresses = 0;
+        }
+      } else {
+        spacebarPresses = 0; // Reset counter if not spacebar
+      }
+    });
+  </script>
+        <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
+        <script type="text/javascript" src="4399.z.js"></script>
+        <script>
+            window.config = {
+                loader: 'unity',
+                debug: false,
+                maxRatio: 16 / 9,
+                minRatio: 9 / 16,
+
+                title: 'Subway Surfers: San Francisco',
+
+                unityVersion: '2019.4.18f1',
+                unityWebglBuildUrl: 'Build\/SanFrancisco\/SanFrancisco.json',
+
+                fileSize: 35,
+                cachedDecompressedFileSizes: {
+                    'SanFrancisco.asm.code.unityweb': 9077143,
+                    'SanFrancisco.asm.framework.unityweb': 86369,
+                    'SanFrancisco.asm.memory.unityweb': 951447,
+                    'SanFrancisco.data.unityweb': 18323917,
+                    'SanFrancisco.wasm.code.unityweb': 7279617,
+                    'SanFrancisco.wasm.framework.unityweb': 90693,
+                },
+            };
+        </script>
+          <link rel="stylesheet" href="/storage/css/sidebar.css">
+                            <script src="../../storage/js/cloak.js"></script>
+        
+    </head>
+
+    <body>
+
+        <script src="master-loader.js"></script>
+      <div class="sidebar" id="draggableSidebar">
+    <h2>Quicklinks</h2>
+    <a href="https://classroom.google.com/">
+      <button class="sidebar-button-class">
+        <p>Google Classroom</p>
+      </button>
+    </a>
+    <a href="https://drive.google.com/">
+      <button class="sidebar-button-drive">
+        <p>Drive</p>
+      </button>
+  </a>
+    <a href="chrome://new-tab-page">
+      <button class="sidebar-button-newtab">
+        <p>New tab</p>
+      </button>
+    </a>
+  </div>
+</body>
+</html>

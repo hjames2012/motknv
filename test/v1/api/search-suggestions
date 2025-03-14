@@ -1,0 +1,8 @@
+SyntaxError: Unexpected token '<', "<html><hea"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5489:19)
+    at successSteps (node:internal/deps/undici/undici:5470:27)
+    at fullyReadBody (node:internal/deps/undici/undici:4381:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async consumeBody (node:internal/deps/undici/undici:5479:7)
+    at async file:///root/shadowv3/index.js:66:24
