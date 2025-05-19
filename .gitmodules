@@ -1,2 +1,3 @@
 [submodule "mot"]
-	url = https://github.com/hjames2012/motknv.git
+    path = mot
+    url = https://github.com/hjames2012/motknv.git
