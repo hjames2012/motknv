@@ -226,20 +226,20 @@ const OFFLINE_MODE = [
     // offline mode page files
     '/offline.html',
     '/images/backgrounds/seraph/offlinebg.jpg',
-    '/images/ico.ico',
+    '/image/logo.png',
     '/storage/fonts/ubuntu/Ubuntu.woff2',
     '/storage/js/directories.json',
 
     // download ruffle
-    '/storage/ruffle/a29c1b01570ffecf6fae.wasm',
-    '/storage/ruffle/core.ruffle.1caf8a7231ccf85abb1d.js',
-    '/storage/ruffle/core.ruffle.1caf8a7231ccf85abb1d.js.map',
-    '/storage/ruffle/core.ruffle.78cc902cbabd4bc44008.js',
-    '/storage/ruffle/core.ruffle.78cc902cbabd4bc44008.js.map',
-    '/storage/ruffle/d6c752be1c7e690bf226.wasm',
-    '/storage/ruffle/package.json',
-    '/storage/ruffle/ruffle.js',
-    '/storage/ruffle/ruffle.js.map',
+    '/ruffle/a29c1b01570ffecf6fae.wasm',
+    '/ruffle/core.ruffle.1caf8a7231ccf85abb1d.js',
+    '/ruffle/core.ruffle.1caf8a7231ccf85abb1d.js.map',
+    '/ruffle/core.ruffle.78cc902cbabd4bc44008.js',
+    '/ruffle/core.ruffle.78cc902cbabd4bc44008.js.map',
+    '/ruffle/d6c752be1c7e690bf226.wasm',
+    '/ruffle/package.json',
+    '/ruffle/ruffle.js',
+    '/ruffle/ruffle.js.map',
 
     // download cloaking
     '/storage/js/cloak.js',
