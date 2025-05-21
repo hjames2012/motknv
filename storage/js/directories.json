@@ -30,6 +30,12 @@
         ],
         "thumbnail": "/images/thumbnails/subwaysurfers.jpg"
     },
+    "blockblast/index.html": {
+    "files": [
+        "/games/blockblast/index.html"
+    ],
+    "thumbnail": "/images/thumbnails/blockblast.jpg"
+},
     "bloxors/index.html": {
         "files": [
             "/games/bloxors/bloxors.swf",
