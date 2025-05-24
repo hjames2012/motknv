@@ -1,5 +1,5 @@
 <html>
-  <head>
+    <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -9,49 +9,7 @@
           gtag('config', 'G-7FN7LEVWXD');
         </script>
 
-        <title>Classroom</title>
-  <script>
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-    });
-
-    // Disable text selection
-    document.addEventListener('selectstart', (event) => {
-      event.preventDefault();
-    });
-
-    // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
-    document.addEventListener('keydown', (event) => {
-      if (event.ctrlKey && event.key === 'u') {
-        event.preventDefault();
-      }
-      if (event.key === 'F12') {
-        event.preventDefault();
-      }
-      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-        event.preventDefault();
-      }
-      if (event.metaKey && event.altKey && event.key === 'I') {
-        event.preventDefault();
-      }
-      if (event.key === 'Escape') {
-        event.preventDefault();
-      }
-      if (event.key === 'F11') {
-        event.preventDefault();
-      }
-      if (event.key === ' ') {
-        spacebarPresses++;
-        if (spacebarPresses === 3) {
-          window.close(); // Close the tab
-          spacebarPresses = 0;
-        }
-      } else {
-        spacebarPresses = 0; // Reset counter if not spacebar
-      }
-    });
-  </script>
+        <title>Slope | Seraph</title>
 
         <meta http-equiv="X-Frame-Options" content="deny">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -64,10 +22,8 @@
         </script>
         <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
         <script src="../../storage/js/cloak.js"></script>
-        <link rel="stylesheet" href="/storage/css/sidebar.css">
     </head>
     <body>
-
         <div class="webgl-content">
             <div id="gameContainer" style="width: 100%; height: 100%; margin: auto;"></div>
                 <div style="position: absolute; bottom: 1vh; left: 1vw;" class="fullscreen" onclick="window.unityInstance.SetFullscreen(1)">
@@ -79,23 +35,5 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
         <script src="script.js"></script>
-    <div class="sidebar" id="draggableSidebar">
-    <h2>Quicklinks</h2>
-    <a href="https://classroom.google.com/">
-      <button class="sidebar-button-class">
-        <p>Google Classroom</p>
-      </button>
-    </a>
-    <a href="https://drive.google.com/">
-      <button class="sidebar-button-drive">
-        <p>Drive</p>
-      </button>
-  </a>
-    <a href="chrome://new-tab-page">
-      <button class="sidebar-button-newtab">
-        <p>New tab</p>
-      </button>
-    </a>
-  </div>
-</body>
+  </body>
 </html>
