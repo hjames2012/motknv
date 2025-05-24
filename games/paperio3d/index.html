@@ -10,52 +10,10 @@
 
       gtag('config', 'G-7FN7LEVWXD');
     </script>
- <script>
-  // Disable right-click context menu
-document.addEventListener('contextmenu', (event) => {
-event.preventDefault();
-});
 
-// Disable text selection
-document.addEventListener('selectstart', (event) => {
-event.preventDefault();
-});
-
-// Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
-document.addEventListener('keydown', (event) => {
-if (event.ctrlKey && event.key === 'u') {
-event.preventDefault();
-}
-if (event.key === 'F12') {
-event.preventDefault();
-}
-if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-event.preventDefault();
-}
-if (event.metaKey && event.altKey && event.key === 'I') {
-event.preventDefault();
-}
-if (event.key === 'Escape') {
-event.preventDefault();
-}
-if (event.key === 'F11') {
-event.preventDefault();
-}
-if (event.key === ' ') {
-spacebarPresses++;
-if (spacebarPresses === 3) {
-window.close(); // Close the tab
-spacebarPresses = 0;
-}
-} else {
-spacebarPresses = 0; // Reset counter if not spacebar
-}
-});
-</script>
-<title>Classroom</title>
+<title>Paper IO 3D | Seraph</title>
 <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
 <script src="../../storage/js/cloak.js"></script>
-<link rel="stylesheet" href="/storage/css/sidebar.css">
     <style>
    * {user-select: none;}
           html,body{background: #444; font-family: Helvetica, Arial, sans-serif;width:100vw;height:100vh;margin:0;position:fixed;top:0;left:0;overflow:hidden}
