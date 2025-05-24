@@ -13,49 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui, shrink-to-fit=no"> 
   <meta name="apple-mobile-web-app-capable" content="yes"> 
   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags --> 
-  <title>Classroom</title>
-  <script>
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-    });
-
-    // Disable text selection
-    document.addEventListener('selectstart', (event) => {
-      event.preventDefault();
-    });
-
-    // Attempt to disable Ctrl+U, F12, Ctrl+Shift+I, Command+Option+I, Esc, and F11 (may not be fully reliable)
-    document.addEventListener('keydown', (event) => {
-      if (event.ctrlKey && event.key === 'u') {
-        event.preventDefault();
-      }
-      if (event.key === 'F12') {
-        event.preventDefault();
-      }
-      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-        event.preventDefault();
-      }
-      if (event.metaKey && event.altKey && event.key === 'I') {
-        event.preventDefault();
-      }
-      if (event.key === 'Escape') {
-        event.preventDefault();
-      }
-      if (event.key === 'F11') {
-        event.preventDefault();
-      }
-      if (event.key === ' ') {
-        spacebarPresses++;
-        if (spacebarPresses === 3) {
-          window.close(); // Close the tab
-          spacebarPresses = 0;
-        }
-      } else {
-        spacebarPresses = 0; // Reset counter if not spacebar
-      }
-    });
-  </script>
+  <title>Monkey Mart | Seraph</title>
   <link href="../../images/ico.ico" rel="shortcut icon">
   <script src="../../storage/js/cloak.js"></script>
   <meta name="robots" content="noindex,nofollow" />
@@ -197,8 +155,7 @@
 	</style> 
 <script src="./poki-sdk.js"></script>
 </head> 
- <body>
- 
+ <body> 
   <div id="app-container" class="canvas-app-container" style="width: 640px; height: 360px;"> 
    <div id="canvas-container" class="canvas-app-canvas-container"> 
     <canvas id="canvas" class="canvas-app-canvas" tabindex="1" width="640" height="360"></canvas> 
@@ -404,22 +361,4 @@
 		};
 	</script>
   <script type="text/javascript" src="GameAnalytics.js"></script>
-  <div class="sidebar" id="draggableSidebar">
-    <h2>Quicklinks</h2>
-    <a href="https://classroom.google.com/">
-      <button class="sidebar-button-class">
-        <p>Google Classroom</p>
-      </button>
-    </a>
-    <a href="https://drive.google.com/">
-      <button class="sidebar-button-drive">
-        <p>Drive</p>
-      </button>
-  </a>
-    <a href="chrome://new-tab-page">
-      <button class="sidebar-button-newtab">
-        <p>New tab</p>
-      </button>
-    </a>
-  </div>
-</body></html>
+ </body></html>
