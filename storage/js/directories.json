@@ -5834,5 +5834,61 @@
             "/games/1v1lol/lib/jquery.min.js"
         ],
         "thumbnail": "/images/thumbnails/1v1lol.jpg"
+    },
+    "roblox/index.html": {
+        "files": [
+            "/games/roblox/index.html",
+            "/games/roblox/static/uv/uv.bundle.js",
+            "/games/roblox/static/uv/uv.config.js",
+            "/games/roblox/static/uv/uv.handler.js"
+        ],
+        "thumbnail": "/images/thumbnails/roblox.jpg"
+    },
+    "simcity/index.html": {
+        "files": [
+            "/games/simcity/index.html",
+            "/games/simcity/SimCity2000.zip"
+        ],
+        "thumbnail": "/images/thumbnails/simcity.jpg"
+    },
+    "paperio3d/index.html": {
+        "files": [
+            "/games/paperio3d/index.html",
+            "/games/paperio3d/splash.jpg"
+        ],
+        "thumbnail": "/images/thumbnails/paperio3d.jpg"
+    },
+    "paperio2/index.html": {
+        "files": [
+            "/games/paperio2/index.html",
+            "/games/paperio2/languages.json",
+            "/games/paperio2/manifest.json",
+            "/games/paperio2/css/fonts.css",
+            "/games/paperio2/css/style3.css",
+            "/games/paperio2/css/fonts/0FlJVP6Hrxmt7-fsUFhlFXNIlpcSwSrkQg-v_38.woff2",
+            "/games/paperio2/css/fonts/0FlJVP6Hrxmt7-fsUFhlFXNIlpcSwSrkQQ-v_38.woff2",
+            "/games/paperio2/css/fonts/0FlJVP6Hrxmt7-fsUFhlFXNIlpcSwSrkSA-v_38.woff2",
+            "/games/paperio2/css/fonts/0FlJVP6Hrxmt7-fsUFhlFXNIlpcSwSrkTA-v.woff2",
+            "/games/paperio2/images/icon192.png",
+            "/games/paperio2/images/icon512.png",
+            "/games/paperio2/images/logo.png",
+            "/games/paperio2/js/app-new-gm.js",
+            "/games/paperio2/js/loader.js",
+            "/games/paperio2/js/sdk.js",
+            "/games/paperio2/js/window.js"
+        ],
+        "thumbnail": "/images/thumbnails/paperio2.jpg"
+    },
+    "obbyroblox/index.html": {
+        "files": [
+            "/games/obbyroblox/index.html",
+            "/games/obbyroblox/sdk.js",
+            "/games/obbyroblox/style.css",
+            "/games/obbyroblox/Build/FInFin.data.unityweb",
+            "/games/obbyroblox/Build/FInFin.framework.js.unityweb",
+            "/games/obbyroblox/Build/FInFin.loader.js",
+            "/games/obbyroblox/Build/FInFin.wasm.unityweb"
+        ],
+        "thumbnail": "/images/thumbnails/obbyroblox.jpg"
     }
 }
