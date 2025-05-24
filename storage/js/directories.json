@@ -5805,5 +5805,34 @@
             "/games/retrobowl/img/icon.jpg"
         ],
         "thumbnail": "/images/thumbnails/retrobowl.jpg"
+    },
+    "1v1lol/index.html": {
+        "files": [
+            "/games/1v1lol/1v1lol.jpg",
+            "/games/1v1lol/index.html",
+            "/games/1v1lol/logo.png",
+            "/games/1v1lol/UnityLoader.js",
+            "/games/1v1lol/webcopy-origin.txt",
+            "/games/1v1lol/css/style.css",
+            "/games/1v1lol/firebase/firebase-analytics.js",
+            "/games/1v1lol/firebase/firebase-app.js",
+            "/games/1v1lol/firebase/firebase-auth.js",
+            "/games/1v1lol/firebase/firebase-firestore.js",
+            "/games/1v1lol/firebase/firebase-remote-config.js",
+            "/games/1v1lol/js/adblockManager.js",
+            "/games/1v1lol/js/cpmstar.js",
+            "/games/1v1lol/js/firebase-config.js",
+            "/games/1v1lol/js/firebase.js",
+            "/games/1v1lol/js/fullscreen.js",
+            "/games/1v1lol/js/IronSourceRV.js",
+            "/games/1v1lol/js/login.js",
+            "/games/1v1lol/js/macUserAgent.js",
+            "/games/1v1lol/js/mobileRedirect.js",
+            "/games/1v1lol/js/visibilityChangeListener.js",
+            "/games/1v1lol/js/windowResize.js",
+            "/games/1v1lol/js/sdkloader/ima3.js",
+            "/games/1v1lol/lib/jquery.min.js"
+        ],
+        "thumbnail": "/images/thumbnails/1v1lol.jpg"
     }
 }
